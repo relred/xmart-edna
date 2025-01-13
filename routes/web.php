@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\GradeLevelController;
 use App\Http\Controllers\GuardianAccessController;
 use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\GuardianScanController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -20,6 +21,8 @@ Route::resource('guardians', GuardianController::class)->middleware(['auth']);
 Route::get('/guardian-access', [GuardianAccessController::class, 'showForm'])->name('guardian.access');
 Route::post('/guardian-access', [GuardianAccessController::class, 'verify'])->name('guardian.verify');
 Route::get('/guardian-profile/{guardian}', [GuardianAccessController::class, 'profile'])->name('guardian.profile');
+
+Route::get('/logs', [GuardianScanController::class, 'index'])->name('logs.index');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

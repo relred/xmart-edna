@@ -42,6 +42,9 @@ new class extends Component
                     <x-nav-link :href="route('grade-levels.index')" :active="request()->routeIs('grade-levels.index')" wire:navigate>
                         {{ __('Grados') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('logs.index')" :active="request()->routeIs('logs.index')" wire:navigate>
+                        {{ __('Ingresos') }}
+                    </x-nav-link>
                     <x-nav-link class="cursor-pointer">
                         <span class="text-gray-400">
                             {{ __('Pagos') }}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guardian;
 use Illuminate\Http\Request;
+use App\Models\GuardianScan;
 
 class GuardianAccessController extends Controller
 {
@@ -16,7 +17,6 @@ class GuardianAccessController extends Controller
     {
         $identifier = $request->input('identifier');
 
-        // Try to find guardian by QR code or PIN
         $guardian = Guardian::where('qr_code', $identifier)
                           ->orWhere('pin', $identifier)
                           ->first();
@@ -24,6 +24,17 @@ class GuardianAccessController extends Controller
         if (!$guardian) {
             return back()->with('error', 'Identificador inválido');
         }
+
+        $identifierType = strlen($identifier) === 4 ? 'pin' : 'qr_code';
+
+        GuardianScan::create([
+            'guardian_id' => $guardian?->id ?? null,
+            'identifier_used' => $identifier,
+            'identifier_type' => $identifierType,
+            'success' => (bool) $guardian,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent()
+        ]);
 
         return redirect()->route('guardian.profile', $guardian);
     }

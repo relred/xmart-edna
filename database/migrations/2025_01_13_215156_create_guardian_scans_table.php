@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('guardian_scans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('guardian_id')->constrained();
+            $table->string('identifier_used');
+            $table->enum('identifier_type', ['qr_code', 'pin']);
+            $table->boolean('success');
             $table->timestamps();
         });
     }
