@@ -48,10 +48,10 @@
             </div>
         </div>
 
-{{--         <script>
+        <script>
             setTimeout(function() {
                 window.location.href = "{{ route('guardian.access') }}";
             }, 8000);
-        </script> --}}
+        </script>
     </body>
 </html>

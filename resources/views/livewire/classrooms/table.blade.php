@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 new class extends Component {
 
-    public ?int $quantity = 10;
+    public ?int $quantity = 100;
     public ?string $search = null;
 
     public function with(): array

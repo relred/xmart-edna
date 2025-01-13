@@ -22,7 +22,7 @@ class GuardianAccessController extends Controller
                           ->first();
 
         if (!$guardian) {
-            return back()->with('error', 'Invalid QR code or PIN');
+            return back()->with('error', 'Identificador inválido');
         }
 
         return redirect()->route('guardian.profile', $guardian);

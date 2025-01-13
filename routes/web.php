@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::resource('classrooms', ClassroomController::class);
-Route::resource('grade-levels', GradeLevelController::class);
+Route::resource('classrooms', ClassroomController::class)->middleware(['auth']);
+Route::resource('grade-levels', GradeLevelController::class)->middleware(['auth']);
 
-Route::resource('child', ChildController::class);
-Route::get('/child/{child}/add-guardian', [GuardianController::class, 'create'])->name('child.add-guardian');
-Route::post('/child/{child}/add-guardian', [GuardianController::class, 'store'])->name('child.store-guardian');
+Route::resource('child', ChildController::class)->middleware(['auth']);
+Route::get('/child/{child}/add-guardian', [GuardianController::class, 'create'])->middleware(['auth'])->name('child.add-guardian');
+Route::post('/child/{child}/add-guardian', [GuardianController::class, 'store'])->middleware(['auth'])->name('child.store-guardian');
 
-Route::resource('guardians', GuardianController::class);
+Route::resource('guardians', GuardianController::class)->middleware(['auth']);
 Route::get('/guardian-access', [GuardianAccessController::class, 'showForm'])->name('guardian.access');
 Route::post('/guardian-access', [GuardianAccessController::class, 'verify'])->name('guardian.verify');
 Route::get('/guardian-profile/{guardian}', [GuardianAccessController::class, 'profile'])->name('guardian.profile');
