@@ -26,27 +26,12 @@
         <div class="flex items-center justify-center">
 
             <div class="max-w-md w-full p-6">
-                <form action="{{ route('guardian.verify') }}" method="POST" class="space-y-4">
-                    @csrf
-                    <div>
-                        <input type="text" 
-                               name="identifier" 
-                               id="identifier"
-                               autofocus 
-                               placeholder="Escanee su código QR"
-                               class="w-full p-2 border rounded"
-                               autocomplete="off">
-                    </div>
-        
-                    @error('identifier')
-                        <div class="text-red-500">{{ $message }}</div>
-                    @enderror
-        
-                    @if(session('error'))
-                        <div class="text-red-500">{{ session('error') }}</div>
-                    @endif
-                </form>
             </div>
         </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = "{{ route('kiosk.check') }}";
+            }, 3000);
+        </script>
     </body>
 </html>

@@ -24,7 +24,12 @@ Route::get('/guardian-profile/{guardian}', [GuardianAccessController::class, 'pr
 
 Route::get('/logs', [GuardianScanController::class, 'index'])->name('logs.index');
 
-Route::view('dashboard', 'dashboard')
+Route::get('/kiosk-idle', [GuardianAccessController::class, 'kioskIdle'])->name('kiosk.idle');
+Route::get('/kiosk-check', [GuardianAccessController::class, 'kioskCheckLogs'])->name('kiosk.check');
+Route::get('/kiosk-profile/{guardian}', [GuardianAccessController::class, 'kioskProfile'])->name('kiosk.profile');
+
+
+Route::get('/dashboard', fn() => redirect()->route('child.index'))
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
