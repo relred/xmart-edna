@@ -19,7 +19,7 @@
         <header class="grid items-center gap-2 py-10">
             <center>
                 <div class="flex justify-center col-start-2">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="">
+                    <img src="{{ asset('images/logo-min.jpeg') }}" alt="">
                 </div>
             </center>
         </header>
