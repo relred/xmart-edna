@@ -21,19 +21,24 @@
                     <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full bg-white">
                         @foreach ($logs as $log)
                             <tr class="flex w-full mb-4">
-                                <td class="p-4 w-1/4">{{ $log->guardian->name }}</td>
+                                <td class="p-4 w-1/4">{{ optional($log->guardian)->name ?? 'Sin Nombre' }}</td>
                                 <td class="p-4 w-1/4">
                                     <ul class="list-disc">
-                                        @foreach ($log->guardian->children as $child)
-                                            <li>{{ $child->name }}</li>
-                                        @endforeach
+                                        @if ($log->guardian && $log->guardian->children)
+                                            @foreach ($log->guardian->children as $child)
+                                                <li>{{ $child->name ?? 'Sin nombre' }}</li>
+                                            @endforeach
+                                        @else
+                                            <li>Sin niños</li>
+                                        @endif
                                     </ul>
                                 </td>
-                                <td class="p-4 w-1/5 text-center">{{ $log->identifier_type }}</td>
-                                <td class="p-4 w-1/7">{{ $log->created_at->format('H:i, d/m/Y') }}</td>
-                                <td class="p-4 w-1/7">{{ $log->created_at->diffForHumans() }} </td>
+                                <td class="p-4 w-1/5 text-center">{{ $log->identifier_type ?? 'Sin identificador' }}</td>
+                                <td class="p-4 w-1/7">{{ $log->created_at ? $log->created_at->format('H:i, d/m/Y') : 'Sin fecha' }}</td>
+                                <td class="p-4 w-1/7">{{ $log->created_at ? $log->created_at->diffForHumans() : '' }}</td>
                             </tr>
                         @endforeach
+                    
                     </tbody>
                 </table>
             </div>
