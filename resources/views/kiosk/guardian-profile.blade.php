@@ -43,7 +43,7 @@
                                     class="h-16 rounded object-cover">
                             @endif
                             <div class="ml-4">
-                                <p class="text-4xl font-bold">{{ $child->name }}</p>
+                                <p class="text-5xl font-bold">{{ $child->name }}</p>
                                 <div class="text-gray-500">
                                     Parentezco: {{ $child->pivot->relationship_type }}
                                 </div>
