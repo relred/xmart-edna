@@ -31,6 +31,7 @@
         <script>
             setTimeout(function() {
                 window.location.href = "{{ route('kiosk.check') }}";
+            }, 6500);
             }, 7200);
         </script>
     </body>
