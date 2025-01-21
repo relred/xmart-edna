@@ -22,8 +22,10 @@
                     <img src="{{ Storage::url($guardian->photo) }}" 
                          alt="{{ $guardian->name }}" 
                          class="w-32 h-32 rounded-full object-cover">
+                @else
+                    <img class="mb-4 w-52" src="{{ asset('images/user.png') }}">
                 @endif
-                <h1 class="text-2xl font-bold">{{ $guardian->name }}</h1>
+                <h1 class="text-5xl font-bold">{{ $guardian->name }}</h1>
             </center>
         
             <div class="mt-8">
@@ -34,10 +36,14 @@
                             @if($child->photo)
                                 <img src="{{ Storage::url($child->photo) }}" 
                                      alt="{{ $child->name }}"
-                                     class="w-16 h-16 rounded object-cover">
+                                     class="h-16 rounded object-cover">
+                            @else
+                                <img src="{{ asset('images/user.png') }}" 
+                                    alt="{{ $child->name }}"
+                                    class="h-16 rounded object-cover">
                             @endif
                             <div class="ml-4">
-                                <p class="text-2xl font-bold">{{ $child->name }}</p>
+                                <p class="text-3xl font-bold">{{ $child->name }}</p>
                                 <div class="text-gray-500">
                                     Parentezco: {{ $child->pivot->relationship_type }}
                                 </div>
@@ -48,10 +54,10 @@
             </div>
         </div>
 
-        <script>
+{{--         <script>
             setTimeout(function() {
                 window.location.href = "{{ route('guardian.access') }}";
             }, 16000);
-        </script>
+        </script> --}}
     </body>
 </html>
