@@ -57,7 +57,7 @@
          <script>
             setTimeout(function() {
                 window.location.href = "{{ route('guardian.access') }}";
-            }, 16000);
+            }, 25000);
         </script>
     </body>
 </html>

@@ -54,7 +54,7 @@ class GuardianAccessController extends Controller
     {
         $log = GuardianScan::latest()->first();
 
-        if ($log && $log->created_at->gt(now()->subSeconds(25))) {
+        if ($log && $log->created_at->gt(now()->subSeconds(35))) {
             $guardian = $log->guardian;
             return redirect()->route('kiosk.profile', $guardian);
         }

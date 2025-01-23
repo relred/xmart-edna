@@ -57,7 +57,7 @@
         <script>
             setTimeout(function() {
                 window.location.href = "{{ route('kiosk.idle') }}";
-            }, 20000);
+            }, 30000);
         </script>
     </body>
 </html>
