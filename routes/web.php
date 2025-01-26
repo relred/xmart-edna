@@ -18,6 +18,9 @@ Route::get('/child/{child}/add-guardian', [GuardianController::class, 'create'])
 Route::post('/child/{child}/add-guardian', [GuardianController::class, 'store'])->middleware(['auth'])->name('child.store-guardian');
 
 Route::resource('guardians', GuardianController::class)->middleware(['auth']);
+Route::get('/guardians/{guardian}/add-photo', [GuardianController::class, 'addPhotoView'])->name('guardians.add-photo.view');
+Route::post('/guardians/{guardian}/add-photo', [GuardianController::class, 'addPhotoStore'])->name('guardians.add-photo.store');
+
 Route::get('/guardian-access', [GuardianAccessController::class, 'showForm'])->name('guardian.access');
 Route::post('/guardian-access', [GuardianAccessController::class, 'verify'])->name('guardian.verify');
 Route::get('/guardian-profile/{guardian}', [GuardianAccessController::class, 'profile'])->name('guardian.profile');

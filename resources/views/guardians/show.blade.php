@@ -14,6 +14,8 @@
                     <div>
                         @if($guardian->photo)
                             <img class="rounded-full w-40 h-40 object-cover" src="{{ Storage::url($guardian->photo) }}" alt="Guardian photo">
+                        @else
+                            <img class="rounded-full w-40 h-40 object-cover" src="{{ asset('images/user.png') }}" alt="Guardian photo">
                         @endif
                         <h3 class="text-2xl font-bold ml-2">
                             {{ $guardian->name }}
@@ -28,6 +30,9 @@
                         <span class="font-bold">QR: </span>
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data={{ $guardian->qr_code }}" class="w-40 mt-2">
                     </h3>
+                    <div class="mb-3">
+                        <x-ts-button color="emerald" icon="camera" position="right" href="{{ route('guardians.add-photo.view', $guardian->id) }}">Agregar Fotografía</x-ts-button>
+                    </div>
                 </div>
             <div class="mb-8">
                 <x-ts-card>

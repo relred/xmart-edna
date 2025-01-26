@@ -6,8 +6,10 @@ use App\Http\Requests\StoreGuardianRequest;
 use App\Http\Requests\UpdateGuardianRequest;
 use App\Models\Child;
 use App\Models\Guardian;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class GuardianController extends Controller
 {
@@ -74,6 +76,25 @@ class GuardianController extends Controller
     public function edit(Guardian $guardian)
     {
         //
+    }
+
+    public function addPhotoView(Guardian $guardian) {
+        return view('guardians.add-photo',  compact('guardian'));
+    }
+
+    public function addPhotoStore(Request $request, Guardian $guardian) {
+        $request->validate([
+            'photo' => 'required|image',
+        ]);
+
+        $image = $request->file('photo');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $path = $image->storeAs('guardians', $filename, 'public');
+
+        $guardian->photo = $path;
+        $guardian->save();
+        
+        return redirect()->route('guardians.show', $guardian->id);
     }
 
     /**
