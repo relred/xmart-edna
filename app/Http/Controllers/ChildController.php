@@ -6,6 +6,7 @@ use App\Http\Requests\StoreChildRequest;
 use App\Http\Requests\UpdateChildRequest;
 use App\Models\Child;
 use App\Models\GradeLevel;
+use Illuminate\Http\Request;
 
 class ChildController extends Controller
 {
@@ -50,6 +51,23 @@ class ChildController extends Controller
     public function edit(Child $child)
     {
         //
+    }
+
+    public function addPhotoView(Child $child) {
+        return view('children.add-photo',  compact('child'));
+    }
+
+    public function addPhotoStore(Request $request, Child $child) {
+        $request->validate([
+            'photo' => 'required|image',
+        ]);
+
+        $path = $request->file('photo')->store('child-photos', 'public');
+
+        $child->photo = $path;
+        $child->save();
+        
+        return redirect()->route('child.show', $child->id);
     }
 
     /**

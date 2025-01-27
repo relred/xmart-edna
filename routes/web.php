@@ -16,6 +16,8 @@ Route::resource('grade-levels', GradeLevelController::class)->middleware(['auth'
 Route::resource('child', ChildController::class)->middleware(['auth']);
 Route::get('/child/{child}/add-guardian', [GuardianController::class, 'create'])->middleware(['auth'])->name('child.add-guardian');
 Route::post('/child/{child}/add-guardian', [GuardianController::class, 'store'])->middleware(['auth'])->name('child.store-guardian');
+Route::get('/child/{child}/add-photo', [ChildController::class, 'addPhotoView'])->name('child.add-photo.view');
+Route::post('/child/{child}/add-photo', [ChildController::class, 'addPhotoStore'])->name('child.add-photo.store');
 
 Route::resource('guardians', GuardianController::class)->middleware(['auth']);
 Route::get('/guardians/{guardian}/add-photo', [GuardianController::class, 'addPhotoView'])->name('guardians.add-photo.view');

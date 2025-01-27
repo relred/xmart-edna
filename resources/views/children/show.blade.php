@@ -10,6 +10,13 @@
             <x-ts-link class="mb-5" href="{{ route('child.index') }}">
                 < Volver a la tabla
             </x-ts-link>
+            <div class="ml-5">
+                @if($child->photo)
+                    <img class="rounded-full w-40 h-40 object-cover" src="{{ Storage::url($child->photo) }}" alt="Guardian photo">
+                @else
+                    <img class="rounded-full w-40 h-40 object-cover" src="{{ asset('images/user.png') }}" alt="Guardian photo">
+                @endif
+            </div>
             <div class="flex">
                 <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" stroke-width="2">
                     <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
@@ -32,6 +39,9 @@
             @else
                 <p class="my-4">Sin grado asignado</p>
             @endif
+            <div class="mb-3">
+                <x-ts-button color="emerald" icon="camera" position="right" href="{{ route('child.add-photo.view', $child->id) }}">Agregar Fotografía</x-ts-button>
+            </div>
             <div class="mb-8">
                 <x-ts-card>
                     <div class="flex justify-between items-center">
