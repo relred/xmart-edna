@@ -87,9 +87,7 @@ class GuardianController extends Controller
             'photo' => 'required|image',
         ]);
 
-        $image = $request->file('photo');
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $path = $image->storeAs('guardians', $filename, 'public');
+        $path = $request->file('photo')->store('guardian-photos', 'public');
 
         $guardian->photo = $path;
         $guardian->save();

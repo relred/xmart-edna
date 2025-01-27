@@ -14,7 +14,7 @@
                 <center>
                     <div>
                         @if($guardian->photo)
-                            <img class="rounded-full w-40 h-40 object-cover" src="{{ asset('storage/' . $guardian->image_path) }}" alt="Guardian photo">
+                            <img class="rounded-full w-40 h-40 object-cover" src="{{ Storage::url($guardian->photo) }}" alt="Guardian photo">
                         @else
                             <img class="rounded-full w-40 h-40 object-cover" src="{{ asset('images/user.png') }}" alt="Guardian photo">
                         @endif

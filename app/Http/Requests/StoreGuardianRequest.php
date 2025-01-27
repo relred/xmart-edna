@@ -24,7 +24,7 @@ class StoreGuardianRequest extends FormRequest
         return [
             'name' => 'required',
             'relationship_type' => 'required',
-            'phone' => 'required',
+            'phone' => 'nullable',
             'photo' => ['nullable', 'image', 'max:2048'],
         ];
     }

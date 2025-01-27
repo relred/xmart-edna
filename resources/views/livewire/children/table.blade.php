@@ -20,7 +20,7 @@ new class extends Component {
             ],
             'rows' => Child::query()
                 ->when($this->search, function (Builder $query) {
-                    return $query->where('name', 'like', "%{$this->search}%");
+                    return $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($this->search) . '%']);
                 })
                 ->paginate($this->quantity)
                 ->withQueryString(),
@@ -30,7 +30,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <x-ts-table :$headers :$rows filter loading >
+    <x-ts-table :$headers :$rows filter loading paginate :paginator="null">
         @interact('column_action', $row) 
             <x-ts-button.circle color="amber"
                                 icon="chevron-double-right"

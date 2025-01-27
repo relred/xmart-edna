@@ -19,7 +19,7 @@
                     <x-ts-input name="relationship_type" label="Relación" hint="Ingrese la relación que tiene con el niño" placeholder="ej. Tío, Abuela, Padre, Madre" required autocomplete="off"/>
                 </div>
                 <div class="mb-2">
-                    <x-ts-input name="phone" label="Celular" hint="Ingrese la relación que tiene con el niño" placeholder="ej. 6865551234" required autocomplete="off"/>
+                    <x-ts-input name="phone" label="Celular" hint="Ingrese la relación que tiene con el niño" placeholder="ej. 6865551234" autocomplete="off"/>
                 </div>
                 <div class="mb-2">
                     <label for="photo" class="block">Fotografía (optional)</label>
