@@ -16,34 +16,36 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="max-w-2xl mx-auto p-6 mt-16">
+        <div class="max-w-2xl mx-auto mt-2">
             <center>
-                @if($guardian->photo)
-                    <img src="{{ Storage::url($guardian->photo) }}" 
-                         alt="{{ $guardian->name }}" 
-                         class="w-40 h-40 rounded-full object-cover">
-                @else
-                    <img class="mb-4 w-52" src="{{ asset('images/user.png') }}">
-                @endif
-                <h1 class="text-4xl font-bold">{{ $guardian->name }}</h1>
+                <div class="flex items-center">
+                    @if($guardian->photo)
+                        <img src="{{ Storage::url($guardian->photo) }}" 
+                             alt="{{ $guardian->name }}" 
+                             class="h-24 rounded-full object-cover">
+                    @else
+                        <img class="mb-4 h-24" src="{{ asset('images/user.png') }}">
+                    @endif
+                    <h1 class="text-3xl font-bold ml-5">{{ $guardian->name }}</h1>
+                </div>
             </center>
         
             <div class="mt-8">
                 <h2 class="text-2xl font-semibold ml-4">Niños</h2>
                 <div class="space-y-4">
                     @foreach($guardian->children as $child)
-                        <div class="flex items-center p-4 border rounded">
+                        <div class="p-2 border flex flex-col items-center text-center">
                             @if($child->photo)
-                                <img src="{{ Storage::url($child->photo) }}" 
-                                     alt="{{ $child->name }}"
-                                     class="h-60 rounded object-cover">
-                            @else
-                                <img src="{{ asset('images/user.png') }}" 
+                                <img src="{{ Storage::url($child->photo) }}"
                                     alt="{{ $child->name }}"
-                                    class="h-60 rounded object-cover">
+                                    class="h-96 rounded object-cover">
+                            @else
+                                <img src="{{ asset('images/user.png') }}"
+                                    alt="{{ $child->name }}"
+                                    class="h-96 rounded object-cover">
                             @endif
-                            <div class="ml-4">
-                                <p class="text-4xl font-bold">{{ $child->name }}</p>
+                            <div class="mt-4">
+                                <p class="text-2xl font-bold">{{ $child->name }}</p>
                                 <div class="text-gray-500">
                                     Parentezco: {{ $child->pivot->relationship_type }}
                                 </div>
